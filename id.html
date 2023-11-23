@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Identificador de URL</title>
+    <script>
+        function obterTitulo() {
+            var url = document.getElementById("urlInput").value;
+
+            // Verifica se a URL começa com "http://" ou "https://"
+            if (!url.startsWith("http://") && !url.startsWith("https://")) {
+                url = "http://" + url;
+            }
+
+            // Cria um objeto XMLHttpRequest para fazer uma requisição HTTP
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    // Parseia a resposta como um documento HTML
+                    var parser = new DOMParser();
+                    var doc = parser.parseFromString(xhr.responseText, "text/html");
+                    
+                    // Obtém e exibe o título do site
+                    var title = doc.title;
+                    document.getElementById("tituloResultado").innerHTML = "Título do Site: " + title;
+                }
+            };
+            xhr.open("GET", url, true);
+            xhr.send();
+        }
+    </script>
+</head>
+<body>
+    <h1>Identificador de URL</h1>
+    <label for="urlInput">Insira a URL:</label>
+    <input type="text" id="urlInput" placeholder="Digite a URL aqui">
+    <button onclick="obterTitulo()">Obter Título</button>
+    <div id="tituloResultado"></div>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Gerador de Horários</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <div class="generator">
+        <div id="current-time"></div>
+        <h1>Gerador de Horário</h1>
+        <label for="intervalo">Intervalo de minutos:</label>
+        <input type="number" id="intervalo" min="1" value="4">
+        <div class="buttons-container">
+            <div class="button-wrapper">
+                <button id="generate">Gerar Horário</button>
+                <button id="generateJogadas">Gerar Jogadas</button>
+            </div>
+        </div>
+        <label for="typeSelector">Tipo:</label>
+        <select id="typeSelector">
+            <option value="📢 Horário Pagantes">Horário Pagantes</option>
+            <option value="📢 Números de Jogadas">Números de Jogadas</option>
+        </select>
+        <div id="messageContainer">
+            <input type="text" id="message" placeholder="Sua mensagem. Ops">
+            <span id="emojis" role="button" tabindex="0">⚠</span>
+        </div>
+        <label for="gameSelector">Jogo:</label>
+        <select id="gameSelector">
+            <option value="🍀 Fortune Tiger 🍀">Fortune Tiger</option>
+            <option value="🍀 Fortune Ox 🍀">Fortune Ox</option>
+            <option value="🍀 Fortune Mouse 🍀">Fortune Mouse</option>
+            <option value="🍀 Fortune Rabbit 🍀">Fortune Rabbit</option>
+            <option value="🍀 Ninja Crash 🍀">Ninja Crash</option>
+        </select>
+        <span>Link da plataforma: </span><input type="text" id="link" placeholder="Link da Casa de Apostas">
+        <div id="messageAndPlatform"></div>
+        <div id="horarios"></div>
+        <div class="buttons-container">
+            <div class="button-wrapper">
+                <button id="copy">Copiar</button>
+                <button id="clear">Limpar</button>
+            </div>
+        </div>
+    </div>
+    <div class="notification" id="copySuccess">Copiado com sucesso! O sistema foi reiniciado.</div>
+    <script src="script.js"></script>
+</body>
+
+</html>

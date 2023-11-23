@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Texto para Áudio</title>
+</head>
+<body>
+
+    <div>
+        <label for="texto">Digite o texto:</label>
+        <textarea id="texto" rows="4" cols="50"></textarea>
+    </div>
+
+    <button onclick="converteTextoParaAudio()">Converter para Áudio</button>
+
+    <script>
+        function converteTextoParaAudio() {
+            var texto = document.getElementById('texto').value;
+
+            // Substitua 'SEU_API_KEY' e 'SEU_URL' pelas suas credenciais da IBM Watson Text-to-Speech
+            var apiKey = 'SEU_API_KEY';
+            var url = 'SEU_URL';
+
+            // Monta a URL da API
+            var apiUrl = url + '/v1/synthesize?text=' + encodeURIComponent(texto);
+
+            // Cria o elemento de áudio
+            var audio = new Audio(apiUrl);
+            
+            // Adiciona cabeçalhos de autenticação
+            audio.headers = {
+                'Authorization': 'Basic ' + btoa('apikey:' + apiKey),
+            };
+
+            // Reproduz o áudio
+            audio.play();
+        }
+    </script>
+
+</body>
+</html>

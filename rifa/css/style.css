@@ -1,0 +1,59 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.container {
+    max-width: 800px;
+    margin: 80px auto; /* Ajuste conforme necessário */
+}
+
+.rifa-section {
+    margin-bottom: 30px;
+}
+
+.rifa-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.rifa-item {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 5px;
+    flex: 1 1 calc(33.33% - 10px);
+}
+
+.disponivel {
+    background-color: #c3e6cb;
+}
+
+.vendida {
+    background-color: #f8d7da;
+}
+
+.footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    z-index: 1000;
+}

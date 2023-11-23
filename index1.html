@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gerador de Mensagens</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #000;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        h1 {
+            color: #fff;
+        }
+
+        /* Estilos para a notificação */
+        .notification {
+            background-color: rgb(224, 255, 224);
+            color: #000000;
+            padding: 30px;
+            border: solid 2px color(srgb red green blue);
+            border-radius: 5px;
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+        }
+
+        .checkmark-icon {
+            color: #089c08;
+            font-size: 60px;
+            margin-right: 10px;
+        }
+
+        /* Estilos para os campos de entrada */
+        form {
+            background-color: #111;
+            border: 1px solid #3333331f;
+            padding: 20px;
+            border-radius: 5px;
+            width: 60%;
+            margin: 0 auto;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #333;
+            border-radius: 3px;
+            background-color: #222;
+            color: #fff;
+        }
+
+        input:focus, textarea:focus {
+            border: 1px solid #0f0;
+            box-shadow: 0 0 10px #0f0;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #mensagem-gerada {
+            font-weight: bold;
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <h1>Gerador de Mensagens</h1>
+    
+    <form id="message-form">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" placeholder="Seu nome"><br><br>
+
+        <label for="mensagem">Mensagem:</label>
+        <textarea id="mensagem" name="mensagem" rows="4" cols="50" placeholder="Digite sua mensagem aqui"></textarea><br><br>
+
+        <button type="button" id="gerar-botao">Gerar Mensagem</button>
+        <button type="button" id="copiar-botao">Copiar Mensagem</button>
+    </form>
+
+    <h2>Mensagem Gerada:</h2>
+    <p id="mensagem-gerada"></p>
+
+    <div class="notification" id="notification">
+        <i class="checkmark-icon">&#10004;</i>Copiado com sucesso!
+    </div>
+
+    <script>
+        var gerarBotao = document.getElementById("gerar-botao");
+        var copiarBotao = document.getElementById("copiar-botao");
+        var mensagemGerada = document.getElementById("mensagem-gerada");
+        var nomeInput = document.getElementById("nome");
+        var mensagemInput = document.getElementById("mensagem");
+        var notification = document.getElementById("notification");
+
+        function gerarValoresAleatorios() {
+            var valores = [];
+            for (var i = 0; i < 5; i++) {
+                valores.push(Math.floor(Math.random() * 10) + 1);
+            }
+            return valores;
+        }
+
+        gerarBotao.addEventListener("click", function() {
+            var nome = nomeInput.value;
+
+            var valoresAleatorios = gerarValoresAleatorios();
+            var mensagem = `📊 *Estratégia Vencedora:*\n`;
+            mensagem += `${valoresAleatorios[0]}x R$0,40 - normal 👈\n`;
+            mensagem += `${valoresAleatorios[1]}x R$0,40 - turbo ⚡️\n`;
+            mensagem += `${valoresAleatorios[2]}x R$0,80 - normal 👈\n`;
+            mensagem += `${valoresAleatorios[3]}x R$0,80 - turbo ⚡️\n`;
+            mensagem += `${valoresAleatorios[4]}x R$1,20 - turbo ⚡️`;
+
+            if (nome) {
+                var mensagemGeradaTexto = `Olá, ${nome}! \n${mensagem}`;
+                mensagemGerada.textContent = mensagemGeradaTexto;
+            } else {
+                alert("Por favor, preencha o campo 'Nome'.");
+            }
+        });
+
+        copiarBotao.addEventListener("click", function() {
+            var mensagemGeradaTexto = mensagemGerada.textContent;
+
+            if (mensagemGeradaTexto) {
+                var textarea = document.createElement("textarea");
+                textarea.value = mensagemGeradaTexto;
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand("copy");
+                document.body.removeChild(textarea);
+
+                // Exibir notificação de "copiado com sucesso"
+                notification.style.display = "block";
+
+                setTimeout(function() {
+                    notification.style.display = "none";
+                }, 3000);
+
+                // Redefinir o sistema
+                nomeInput.value = "";
+                mensagemInput.value = "";
+                mensagemGerada.textContent = "";
+            } else {
+                alert("Nenhuma mensagem para copiar.");
+            }
+        });
+    </script>
+</body>
+</html>
