@@ -12,14 +12,14 @@
             justify-content: center;
             height: 100vh;
             margin: 0;
-            background-color: #333;
+            background: url('https://uploads.metropoles.com/wp-content/uploads/2023/08/29123112/roleta-bet365.jpg') center/cover fixed no-repeat rgba(0, 0, 0, 0.89);
             color: #fff;
         }
 
         #gerador {
             text-align: center;
             padding: 20px;
-            border: 1px solid #ccc;
+            border: 1px solid #95a000;
             border-radius: 8px;
             background-color: #444;
         }
@@ -63,19 +63,19 @@
 
         @keyframes pulse {
             0% {
-                box-shadow: 0 0 10px #00ff00,
-                            0 0 20px #00ff00,
-                            0 0 40px #00ff00,
-                            0 0 80px #00ff00;
+                box-shadow: 0 0 10px #ff1e00,
+                            0 0 20px #ff1e00,
+                            0 0 40px #ff1e00,
+                            0 0 80px #ff1e00;
             }
             50% {
                 box-shadow: none;
             }
             100% {
-                box-shadow: 0 0 10px #00ff00,
-                            0 0 20px #00ff00,
-                            0 0 40px #00ff00,
-                            0 0 80px #00ff00;
+                box-shadow: 0 0 10px #dceb13,
+                            0 0 20px #dceb13,
+                            0 0 40px #dceb13,
+                            0 0 80px #dceb13;
             }
         }
 
@@ -97,6 +97,20 @@
             font-size: 24px;
             margin-right: 5px;
         }
+
+        .mensagem-green, .mensagem-red {
+            padding: 10px;
+            margin: 10px;
+            border-radius: 4px;
+        }
+
+        .mensagem-green {
+            background-color: #28a745;
+        }
+
+        .mensagem-red {
+            background-color: #dc3545;
+        }
     </style>
 </head>
 <body>
@@ -105,21 +119,25 @@
     <div class="neon-circle"></div>
     <h2>Gerador de Sinais Roleta BR</h2>
     <label for="casa">Selecione a Casa de Apostas:</label>
-    <select id="casa">
+    <select id="casa" onchange="atualizarLink()">
+        <option value="selecionar">Selecionar</option>
         <option value="bet7k">Bet7k</option>
         <option value="cassino-pix">Cassino Pix</option>
         <option value="blaze">Blaze</option>
-        <option value="estrela-bet">Estrela Bet</option>
+        <option value="bet-vip">Bet VIP</option>
     </select>
     <br>
     <label for="link">Link ou afiliado:</label>
     <input type="text" id="link" placeholder="Insira o link">
     <br><br>
     <button onclick="gerarSinal()">Gerar Sinal</button>
-    <button onclick="copiarTexto()">Copiar</button>
-    <button onclick="restart()">Restart</button>
+    <button onclick="copiarTexto('mensagemGreen')">Copiar Sinal</button>
+    <button onclick="copiarTexto('mensagemRed')">Copiar Vitoria</button>
+    <button onclick="resetar()">Resetar</button> <!-- Botão de reset -->
     <br><br>
     <p id="mensagem"></p>
+    <div class="mensagem-green" id="mensagemGreen"></div>
+    <div class="mensagem-red" id="mensagemRed"></div>
 </div>
 
 <div id="popup">
@@ -128,6 +146,28 @@
 </div>
 
 <script>
+    function atualizarLink() {
+        const casaSelect = document.getElementById('casa');
+        const linkInput = document.getElementById('link');
+
+        switch (casaSelect.value) {
+            case 'bet7k':
+                linkInput.value = 'https://go.aff.7k-partners.com/onp2sptp';
+                break;
+            case 'cassino-pix':
+                linkInput.value = 'https://go.aff.7k-partners.com/sr7eyaaz';
+                break;
+            case 'blaze':
+                linkInput.value = 'https://blaze-6.com/r/bVGB5j';
+                break;
+            case 'bet-vip':
+                linkInput.value = 'https://betvip.com/?ref=37f3fe0c43de';
+                break;
+            default:
+                linkInput.value = '';
+        }
+    }
+
     function gerarSinal() {
         const roletaOpcoes = ['1º e 2° COLUNA', '2º e 3° COLUNA', '1º e 3° COLUNA'];
         const entradaOpcao = escolherAleatoriamente(roletaOpcoes);
@@ -135,10 +175,7 @@
         const casaAposta = document.getElementById('casa').value;
         const link = document.getElementById('link').value;
 
-        // Obtenha a hora atual
         const now = new Date();
-    
-        // Adiante a hora atual em 4 minutos
         now.setMinutes(now.getMinutes() + 4);
 
         const hora = now.getHours().toString().padStart(2, '0');
@@ -147,6 +184,8 @@
         const mensagem = `🎯 Entrada confirmada 🎯<br>🖥 Roleta: ROLETA 🔴⚫️<br>\n➖➖➖➖➖➖➖➖➖<br><br>🔥 Entrada: ${entradaOpcao}<br>🛟 Até duas proteções - Cobrir o zero !<br><br>👉 Cadastre-se:<br>🔗 ${link}<br>🕒  Válido ate as: ${hora}:${minuto}<br>🎲 Casa Pagante: ${casaAposta}`;
 
         document.getElementById('mensagem').innerHTML = mensagem;
+        document.getElementById('mensagemGreen').innerHTML = 'Sinal verde: ' + mensagem;
+        document.getElementById('mensagemRed').innerHTML = '[Mensagem do sinal vermelho aqui]';
         document.getElementById('popupMensagem').innerText = 'Copiado com sucesso!';
     }
 
@@ -154,8 +193,8 @@
         return opcoes[Math.floor(Math.random() * opcoes.length)];
     }
 
-    function copiarTexto() {
-        const mensagem = document.getElementById('mensagem').innerText;
+    function copiarTexto(id) {
+        const mensagem = document.getElementById(id).innerText;
 
         const textarea = document.createElement('textarea');
         textarea.value = mensagem;
@@ -177,10 +216,12 @@
         }, 2000);
     }
 
-    function restart() {
+    function resetar() {
         document.getElementById('mensagem').innerHTML = '';
-        document.getElementById('casa').value = 'bet7k';
+        document.getElementById('casa').value = 'selecionar';
         document.getElementById('link').value = '';
+        document.getElementById('mensagemGreen').innerHTML = '';
+        document.getElementById('mensagemRed').innerHTML = '';
     }
 </script>
 
