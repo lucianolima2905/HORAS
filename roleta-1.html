@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Sinais Roleta BR</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #333;
+            color: #fff;
+        }
+
+        #gerador {
+            text-align: center;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #444;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px;
+            margin: 5px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input, select {
+            padding: 8px;
+            margin: 5px;
+            background-color: #555;
+            color: #fff;
+            border: 1px solid #777;
+            border-radius: 4px;
+        }
+
+        .neon-circle {
+            width: 30px;
+            height: 30px;
+            background-color: #00ff00;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #00ff00,
+                        0 0 20px #00ff00,
+                        0 0 40px #00ff00,
+                        0 0 80px #00ff00;
+            animation: pulse 1s infinite;
+            text-align: center;
+            line-height: 100px;
+            font-size: 18px;
+            color: #fff;
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 10px #00ff00,
+                            0 0 20px #00ff00,
+                            0 0 40px #00ff00,
+                            0 0 80px #00ff00;
+            }
+            50% {
+                box-shadow: none;
+            }
+            100% {
+                box-shadow: 0 0 10px #00ff00,
+                            0 0 20px #00ff00,
+                            0 0 40px #00ff00,
+                            0 0 80px #00ff00;
+            }
+        }
+
+        #popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: #00ff00;
+            color: #000;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        #popup i {
+            color: #fff;
+            font-size: 24px;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="gerador">
+    <div class="neon-circle"></div>
+    <h2>Gerador de Sinais Roleta BR</h2>
+    <label for="casa">Selecione a Casa de Apostas:</label>
+    <select id="casa">
+        <option value="bet7k">Bet7k</option>
+        <option value="cassino-pix">Cassino Pix</option>
+        <option value="blaze">Blaze</option>
+        <option value="estrela-bet">Estrela Bet</option>
+    </select>
+    <br>
+    <label for="link">Link ou afiliado:</label>
+    <input type="text" id="link" placeholder="Insira o link">
+    <br><br>
+    <button onclick="gerarSinal()">Gerar Sinal</button>
+    <button onclick="copiarTexto()">Copiar</button>
+    <button onclick="restart()">Restart</button>
+    <br><br>
+    <p id="mensagem"></p>
+</div>
+
+<div id="popup">
+    <i class="fas fa-check-circle"></i>
+    <span id="popupMensagem"></span>
+</div>
+
+<script>
+    function gerarSinal() {
+        const roletaOpcoes = ['1º e 2° COLUNA', '2º e 3° COLUNA', '1º e 3° COLUNA'];
+        const entradaOpcao = escolherAleatoriamente(roletaOpcoes);
+
+        const casaAposta = document.getElementById('casa').value;
+        const link = document.getElementById('link').value;
+
+        // Obtenha a hora atual
+        const now = new Date();
+    
+        // Adiante a hora atual em 4 minutos
+        now.setMinutes(now.getMinutes() + 4);
+
+        const hora = now.getHours().toString().padStart(2, '0');
+        const minuto = now.getMinutes().toString().padStart(2, '0');
+
+        const mensagem = `🎯 Entrada confirmada 🎯<br>🖥 Roleta: ROLETA 🔴⚫️<br>\n➖➖➖➖➖➖➖➖➖<br><br>🔥 Entrada: ${entradaOpcao}<br>🛟 Até duas proteções - Cobrir o zero !<br><br>👉 Cadastre-se:<br>🔗 ${link}<br>🕒  Válido ate as: ${hora}:${minuto}<br>🎲 Casa Pagante: ${casaAposta}`;
+
+        document.getElementById('mensagem').innerHTML = mensagem;
+        document.getElementById('popupMensagem').innerText = 'Copiado com sucesso!';
+    }
+
+    function escolherAleatoriamente(opcoes) {
+        return opcoes[Math.floor(Math.random() * opcoes.length)];
+    }
+
+    function copiarTexto() {
+        const mensagem = document.getElementById('mensagem').innerText;
+
+        const textarea = document.createElement('textarea');
+        textarea.value = mensagem;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+
+        mostrarPopup();
+        restart();
+    }
+
+    function mostrarPopup() {
+        const popup = document.getElementById('popup');
+        popup.style.display = 'block';
+
+        setTimeout(() => {
+            popup.style.display = 'none';
+        }, 2000);
+    }
+
+    function restart() {
+        document.getElementById('mensagem').innerHTML = '';
+        document.getElementById('casa').value = 'bet7k';
+        document.getElementById('link').value = '';
+    }
+</script>
+
+</body>
+</html>
