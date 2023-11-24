@@ -40,6 +40,9 @@ body::before {
     overflow-y: auto; /* Adiciona uma barra de rolagem vertical quando necessário */
 }
 
+/* Restante do seu código CSS... */
+
+
 /* Estilos do ícone de comentário */
 #comment-icon {
     font-size: 24px;
