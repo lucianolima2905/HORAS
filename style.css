@@ -37,6 +37,7 @@ body::before {
     max-width: 90%;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     animation: changeBorderColor 5s infinite;
+    overflow-y: auto; /* Adiciona uma barra de rolagem vertical quando necessário */
 }
 
 /* Estilos do ícone de comentário */
