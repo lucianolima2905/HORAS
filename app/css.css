@@ -1,0 +1,23 @@
+
+...
+
+.sidebar-menu {
+    display: flex;
+    flex-direction: column;
+
+    background-color: #15191C;
+    width: 75vw;
+    height: 100vh;
+
+    position: absolute;
+    left: -100vw;
+
+    transition: .4s;
+}
+
+.sidebar-menu--active {
+    left: 0;
+    transition: .4s;
+}
+
+...
