@@ -6,30 +6,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
-    <div class="generator">
-        <div id="circle"></div>
+    <div class="generator" id="generator">
         <div id="current-time"></div>
-        
-        <h1>Gerador de Oportunidade</h1>
+        <h1>Gerador de Horário</h1>
         <label for="intervalo">Intervalo de minutos:</label>
         <input type="number" id="intervalo" min="1" value="4">
-        <label for="bookmakerSelector">Casa de Apostas:</label>
-        <select id="bookmakerSelector">
-            <option value="bet7k">Bet7k</option>
-            <option value="cassinoPix">Cassino Pix</option>
-            <option value="blaze">Blaze</option>
-            <option value="luvaBet">Luva Bet</option>
-            <option value="7games">7Games</option>
-            <option value="estrelaBet">Estrela Bet</option>
-        </select>
         <div class="buttons-container">
             <div class="button-wrapper">
                 <button id="generate">Gerar Horário</button>
                 <button id="generateJogadas">Gerar Jogadas</button>
+                <button id="share">Compartilhar</button>
             </div>
         </div>
         <label for="typeSelector">Tipo:</label>
@@ -48,6 +37,15 @@
             <option value="🍀 Fortune Mouse 🍀">Fortune Mouse</option>
             <option value="🍀 Fortune Rabbit 🍀">Fortune Rabbit</option>
             <option value="🍀 Ninja Crash 🍀">Ninja Crash</option>
+        </select>
+        <label for="bookmakerSelector">Casa de Apostas:</label>
+        <select id="bookmakerSelector">
+            <option value="bet7k">Bet7k</option>
+            <option value="cassinoPix">Cassino Pix</option>
+            <option value="blaze">Blaze</option>
+            <option value="luvaBet">Luva Bet</option>
+            <option value="7games">7games</option>
+            <option value="estrelaBet">Estrela Bet</option>
         </select>
         <span>Link da plataforma: </span><input type="text" id="link" placeholder="Link da Casa de Apostas">
         <div id="messageAndPlatform"></div>
