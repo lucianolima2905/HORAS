@@ -59,6 +59,8 @@ emojis.addEventListener("click", function (event) {
     }
 });
 
+// ...
+
 function generateSchedule() {
     const intervalo = parseInt(document.getElementById("intervalo").value, 10);
     const horarios = document.getElementById("horarios");
@@ -75,9 +77,11 @@ function generateSchedule() {
     const gameSelector = document.getElementById("gameSelector");
     const selectedGame = gameSelector.options[gameSelector.selectedIndex].value;
     const link = document.getElementById("link").value;
+    const bookmakerSelector = document.getElementById("bookmakerSelector");
+    const selectedBookmaker = bookmakerSelector.options[bookmakerSelector.selectedIndex].text;
 
     const messageAndPlatform = document.getElementById("messageAndPlatform");
-    messageAndPlatform.innerHTML = `${selectedType} - ${selectedGame} ${message}`;
+    messageAndPlatform.innerHTML = `${selectedType} - ${selectedGame} ${message} na ${selectedBookmaker}`;
 
     for (let i = currentHour; i < currentHour + 2; i++) {
         for (let j = (i === currentHour ? currentMinute : 0); j < 60; j += intervalo) {
@@ -93,7 +97,7 @@ function generateSchedule() {
     }
 
     if (link) {
-        messageAndPlatform.innerHTML += ` 💰 PLATAFORMA PAGANTE:\n📎 ${link}`;
+        messageAndPlatform.innerHTML += ` 💰 PLATAFORMA PAGANTE:\n📎 ${link} - ${selectedBookmaker}`;
     }
 }
 
@@ -108,6 +112,8 @@ function generateJogadas() {
     const estrategia = "📊 Estratégia Vencedora:";
     const valores = [0.4, 0.8, 1.2];
     const link = document.getElementById("link").value;
+    const bookmakerSelector = document.getElementById("bookmakerSelector");
+    const selectedBookmaker = bookmakerSelector.options[bookmakerSelector.selectedIndex].text;
     const gameSelector = document.getElementById("gameSelector");
     const selectedGame = gameSelector.options[gameSelector.selectedIndex].value;
 
@@ -115,7 +121,7 @@ function generateJogadas() {
     const quantidadeNormal = Math.floor(Math.random() * 11);
     const quantidadeTurbo = Math.floor(Math.random() * 11);
 
-    const mensagemJogo = `🎮 JOGO PAGANTE:\n ${selectedGame}\n💰 PLATAFORMA PAGANTE:\n📎 ${link}`;
+    const mensagemJogo = `🎮 JOGO PAGANTE:\n ${selectedGame}\n💰 PLATAFORMA PAGANTE:\n📎 ${link} - ${selectedBookmaker}`;
     const mensagemEstrategia = `${estrategia}\n${quantidadeNormal}x R$${valor.toFixed(2)} - normal 👈\n${quantidadeTurbo}x R$${valor.toFixed(2)} - turbo ⚡️`;
 
     const mensagemGeral = `${mensagemJogo}\n\n${mensagemEstrategia}\n⏱ Válido até as 👉 ${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}\n\n📲 Baixe nosso app\n📎 https://bet9k.fun/app/`;
@@ -124,6 +130,9 @@ function generateJogadas() {
     jogadasItem.innerText = mensagemGeral;
     jogadasElement.appendChild(jogadasItem);
 }
+
+// ...
+
 
 function clearSchedule() {
     const horarios = document.getElementById("horarios");

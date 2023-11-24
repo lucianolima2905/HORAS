@@ -1,6 +1,7 @@
 body {
     font-family: Arial, sans-serif;
     background-color: #111;
+    
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -10,10 +11,11 @@ body {
     color: #fff;
 }
 
+/* Estilos do gerador */
 .generator {
     text-align: center;
-    background-color: #161616;
-    border: 1px solid #b30000;
+    background-color: #3f3f3ff3;
+    border: 1px solid #3d3333;
     padding: 20px;
     border-radius: 5px;
     max-width: 90%;
@@ -21,21 +23,28 @@ body {
     animation: changeBorderColor 5s infinite;
 }
 
+/* Estilos do ícone de comentário */
+#comment-icon {
+    font-size: 24px;
+    color: #0f0; /* Cor verde */
+    margin-right: 10px;
+}
+
 @keyframes changeBorderColor {
     0% {
-        border-color: rgb(255, 0, 0);
+        border-color: rgb(34, 27, 27, 0.8);
     }
     25% {
-        border-color: rgb(0, 255, 0);
+        border-color: rgb(34, 27, 27, 0.8);
     }
     50% {
-        border-color: rgb(0, 0, 255);
+        border-color: rgb(34, 27, 27, 0.8);
     }
     75% {
-        border-color: rgb(255, 255, 0);
+        border-color: rgb(34, 27, 27, 0.8);
     }
     100% {
-        border-color: rgb(255, 0, 255);
+        border-color: rgb(34, 27, 27, 0.8);
     }
 }
 
@@ -54,34 +63,34 @@ p {
         color: rgba(255, 255, 255, 0.8);
     }
     25% {
-        color: rgba(255, 0, 0, 0.8);
+        color: rgba(255, 255, 255, 0.8);
     }
     50% {
-        color: rgba(0, 0, 255, 0.8);
+        color: rgba(255, 255, 255, 0.8);
     }
     75% {
-        color: rgba(196, 0, 196, 0.993);
+        color: rgba(255, 255, 255, 0.8);
     }
     100% {
-        color: rgba(255, 0, 255, 0.8);
+        color: rgba(255, 255, 255, 0.8);
     }
 }
 
 @keyframes changeTextColor {
     0% {
-        color: rgba(255, 255, 255, 0.8);
+        color: rgba(334, 27, 27, 0.8);
     }
     25% {
-        color: rgba(0, 255, 0, 0.8);
+        color: rgba(255, 255, 255, 0.8);
     }
     50% {
-        color: rgba(0, 0, 255, 0.8);
+        color: rgba(255, 255, 255, 0.8);
     }
     75% {
-        color: rgba(255, 255, 0, 0.8);
+        color: rgba(255, 255, 255, 0.8);
     }
     100% {
-        color: rgba(255, 0, 255, 0.8);
+        color: rgba(255, 255, 255, 0.8);
     }
 }
 
@@ -124,7 +133,7 @@ select {
 
 button {
     background-color: #299100;
-    border: 2px solid #000cb6;
+    border: 2px solid #138a08;
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
@@ -132,39 +141,39 @@ button {
 }
 
 button:hover {
-    background-color: #b48a01;
+    background-color: #00790a;
 }
 
-        /* Estilos para a notificação */
-        .notification {
-            background-color: rgb(224, 255, 224);
-            color: #000000;
-            padding: 30px;
-            border: solid 2px color(srgb red green blue);
-            border-radius: 5px;
-            display: none;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 1000;
-        }
+/* Estilos para a notificação */
+.notification {
+    background-color: rgb(224, 255, 224);
+    color: #000000;
+    padding: 30px;
+    border: solid 2px color(srgb rgb(255, 255, 255) green blue);
+    border-radius: 5px;
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+}
 
-        .checkmark-icon {
-            color: #089c08;
-            font-size: 60px;
-            margin-right: 10px;
-        }
+.checkmark-icon {
+    color: #089c08;
+    font-size: 60px;
+    margin-right: 10px;
+}
 
-        /* Estilos para os campos de entrada */
-        form {
-            background-color: #111;
-            border: 1px solid #3333331f;
-            padding: 20px;
-            border-radius: 5px;
-            width: 60%;
-            margin: 0 auto;
-        }
+/* Estilos para os campos de entrada */
+form {
+    background-color: #111;
+    border: 1px solid #3333331f;
+    padding: 20px;
+    border-radius: 5px;
+    width: 60%;
+    margin: 0 auto;
+}
 
 @keyframes fadeOut {
     0% {
@@ -205,7 +214,8 @@ button:hover {
 }
 
 #typeSelector,
-#gameSelector {
+#gameSelector,
+#bookmakerSelector {
     font-size: 16px;
     padding: 10px;
     background-color: #333;
@@ -240,4 +250,25 @@ button:hover {
     font-size: 24px;
     color: #3498db;
     margin-bottom: 20px;
+}
+
+#circle {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: rgba(0, 255, 0, 0.5);
+    margin-left: 10px; /* Ajuste conforme necessário */
+    animation: pulse 1s infinite; /* Efeito de pulsação */
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 5px rgba(211, 226, 6, 0.8);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(32, 84, 226, 0.815);
+    }
+    300% {
+        box-shadow: 0 0 5px rgba(0, 255, 0, 0.8);
+    }
 }
