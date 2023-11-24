@@ -59,8 +59,6 @@ emojis.addEventListener("click", function (event) {
     }
 });
 
-// ...
-
 function generateSchedule() {
     const intervalo = parseInt(document.getElementById("intervalo").value, 10);
     const horarios = document.getElementById("horarios");
@@ -97,8 +95,13 @@ function generateSchedule() {
     }
 
     if (link) {
-        messageAndPlatform.innerHTML += ` 💰 PLATAFORMA PAGANTE:\n📎 ${link} - ${selectedBookmaker}`;
+        messageAndPlatform.innerHTML += ` 💰 PLATAFORMA PAGANTE:\n📎 ${link}`;
     }
+
+    // Adicione as mensagens geradas ao novo contêiner
+    document.getElementById("messagesAndJogadasContainer").innerHTML = '';
+    document.getElementById("messagesAndJogadasContainer").appendChild(messageAndPlatform);
+    document.getElementById("messagesAndJogadasContainer").appendChild(horarios);
 }
 
 function generateJogadas() {
@@ -121,7 +124,7 @@ function generateJogadas() {
     const quantidadeNormal = Math.floor(Math.random() * 11);
     const quantidadeTurbo = Math.floor(Math.random() * 11);
 
-    const mensagemJogo = `🎮 JOGO PAGANTE:\n ${selectedGame}\n💰 PLATAFORMA PAGANTE:\n📎 ${link} - ${selectedBookmaker}`;
+    const mensagemJogo = `🎮 JOGO PAGANTE:\n ${selectedGame}\n💰 PLATAFORMA PAGANTE:\n📎 ${link}`;
     const mensagemEstrategia = `${estrategia}\n${quantidadeNormal}x R$${valor.toFixed(2)} - normal 👈\n${quantidadeTurbo}x R$${valor.toFixed(2)} - turbo ⚡️`;
 
     const mensagemGeral = `${mensagemJogo}\n\n${mensagemEstrategia}\n⏱ Válido até as 👉 ${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}\n\n📲 Baixe nosso app\n📎 https://bet9k.fun/app/`;
@@ -129,10 +132,11 @@ function generateJogadas() {
     const jogadasItem = document.createElement("p");
     jogadasItem.innerText = mensagemGeral;
     jogadasElement.appendChild(jogadasItem);
+
+    // Adicione as jogadas geradas ao novo contêiner
+    document.getElementById("messagesAndJogadasContainer").innerHTML = '';
+    document.getElementById("messagesAndJogadasContainer").appendChild(jogadasElement);
 }
-
-// ...
-
 
 function clearSchedule() {
     const horarios = document.getElementById("horarios");
