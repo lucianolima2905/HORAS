@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #game-container {
+            text-align: center;
+        }
+
+        input {
+            margin-top: 10px;
+            padding: 5px;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 8px;
+            cursor: pointer;
+        }
+    </style>
+    <title>Guess the Word Game</title>
+</head>
+<body>
+    <div id="game-container">
+        <h1>Guess the Word Game</h1>
+        <p id="hint">Hint: <span id="word-hint"></span></p>
+        <input type="text" id="guess-input" placeholder="Enter your guess">
+        <button onclick="checkGuess()">Submit Guess</button>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        // Array de palavras e dicas
+        const words = ["javascript", "html", "css", "developer", "programming"];
+        const hints = ["A scripting language for the web", "Markup language for creating web pages", "Style sheet language for web pages", "Builds applications and software", "Writing code for computers"];
+
+        // Escolhe uma palavra aleatória do array
+        const randomIndex = Math.floor(Math.random() * words.length);
+        let currentWord = words[randomIndex];
+        let currentHint = hints[randomIndex];
+
+        // Elementos HTML
+        const hintElement = document.getElementById("word-hint");
+        const guessInput = document.getElementById("guess-input");
+        const resultElement = document.getElementById("result");
+
+        // Inicialização do jogo
+        hintElement.textContent = currentHint;
+
+        // Função para verificar o palpite do jogador
+        function checkGuess() {
+            const userGuess = guessInput.value.toLowerCase();
+
+            if (userGuess === currentWord) {
+                resultElement.textContent = "Parabéns! Você acertou!";
+                resultElement.style.color = "green";
+            } else {
+                resultElement.textContent = "Tente novamente. Palpite incorreto.";
+                resultElement.style.color = "red";
+            }
+        }
+    </script>
+</body>
+</html>
